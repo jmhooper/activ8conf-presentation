@@ -1,3 +1,5 @@
 markdown: kramdown
 sass:
   compressed: true
+kramdown:
+  smart_quotes: ["apos","apos","quot","quot"]

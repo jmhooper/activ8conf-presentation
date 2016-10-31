@@ -12,19 +12,19 @@ More casually, it is a language developed by Apple for people building for their
 
 
 Apple introduced us to Swift in June 2014.
-At that time they described it as “Objective-C” without the C.
+At that time they described it as "Objective-C" without the C.
 So what is Objective-C?
 Objective-C is an object oriented variant of C, and prior to 2014 it was the primary programming language for iOS and OS X.
 
 
-So, when Apple said that Swift was “Objective-C without the C”, they were saying it has all the power of Objective-C but with a more modern syntax and updated language features.
+So, when Apple said that Swift was "Objective-C without the C", they were saying it has all the power of Objective-C but with a more modern syntax and updated language features.
 At the time, this was evidenced by the tight relationship between the two languages.
 All of the old libs Apple had written for Objective-C were available to us in Swift, and, we could compile our old Objective-C code and our Swift code right alongside each other in the same app.
 
 
 In December of 2015, Apple open sourced Swift.
 The code used to build the Swift compiler and its peripherals are available to the public.
-Apple also published [Swift.org](https://swift.org) which serves as a roadmap for Swift’s development and resources for developers and contributors.
+Apple also published [Swift.org](https://swift.org) which serves as a roadmap for Swift's development and resources for developers and contributors.
 
 ## Where do I get Swift
 
