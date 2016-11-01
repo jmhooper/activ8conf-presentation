@@ -93,6 +93,50 @@ let a: Int = 4
 let c: String = "hello!"
 ```
 
+### Optionals
+
+Swift has a concept of "optional types".
+This is similar to `nil` or `null` in other programming languages.
+
+When a variable has an optional type that means that the variable can either have a value, or the absence of a value.
+In Swift the absence of a value is described as `nil`.
+
+Optional types are described using a `?`.
+
+```swift
+var optionalString: String? = "this could be nil. who knows? maybe?"
+optionalString = nil  // no worries here
+
+var nonoptionalString: String = "this cannot be nil"
+nonoptionalString = nil  // this will explode
+```
+
+Before you can use the value in an optional, you must "unwrap" it.
+Optionals can be unwrapped with the `!`.
+
+If you attempt to unwrap an optional that is nil, your program will crash and die.
+
+```swift
+var optionalInt: Int? = 5
+optionalInt! + 5  // no worries. returns 10
+
+optionalInt = nil
+optionalInt! + 5  // this will explode.
+```
+
+Optionals can be "implicitly unwrapped" if you defined them with a `!` instead of a `?`.
+Implicitly unwrapped optionals do not need a `!` to unwrap them.
+
+Be careful because attempting to access an implicitly unwrapped optional that is nil will crash your program.
+
+```swift
+var unwrappedOptionalInt: Int! = 5
+unwrappedOptionalInt + 5  // no worries. returns 10
+
+unwrappedOptionalInt = nil
+unwrappedOptionalInt + 5  // this will explode.
+```
+
 ### Comments
 
 Swift uses the `//` syntax for single line comments and the `/* */` sytax for mutliline comments.
@@ -307,10 +351,6 @@ numbers.removeValue(forKey: "two")       // key/value for "two" removed
 numbers.updateValue(4, forKey: "three")  // numbers["three"] now equals 4
 numbers.removeAll()                      // numbers is now empty
 ```
-
-### Optionals
-
-TODO
 
 ### Conditionals
 
