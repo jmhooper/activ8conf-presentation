@@ -388,7 +388,7 @@ if number > 5 {
 If statements can also be used with `let` to unwrap optionals.
 
 This example if effectively saying: "If `optionalNumber` is not nil, assign it to the variable `optionalNumber` within the if statement's scope and print it out.
-If `optionalNumber` is nil, print out `"optionalNumber is nil"`."
+If `optionalNumber` is nil, print out `optionalNumber is nil`."
 
 ```swift
 var optionalNumber: Int? = 5
@@ -423,18 +423,252 @@ fibonacci(at: 7)  // return 13
 
 #### While Loops
 
+Swift has while loops which execute a block until a given condition is false
+The example below will print 0, 1, 2, 3, and 4 in that order:
+
+```swift
+var counter = 0
+
+while counter < 5 {
+  print(counter)
+  counter += 1
+}
+```
+
 #### For Loops
+
+Swift does not have traditional C-style for loops.
+Swift's does, however, have for-in loops which are designed to operate over a collection.
+
+The following for loops have the same result as the while loop above:
+
+```swift
+for number in [0, 1, 2, 3, 4] {
+  print(number)
+}
+
+for number in 0..<5 {
+  print(number)
+}
+
+for character in "01234".characters {
+  print(character)
+}
+```
+
+Also available to collections is the `forEach` method:
+
+```swift
+[0, 1, 2, 3, 4].forEach { number in
+  print(number)
+}
+
+(0..<5).forEach { number in
+  print(number)
+}
+
+"01234".characters.forEach { character in
+  print(character)
+}
+```
 
 #### Switch Statements
 
+Swift's switch statements take a value and compare it to a number of cases in a given order.
+It executes the code below the case that matches.
+
+If no matching case is found, it executes the code below the `default` case.
+
+Unlike a number of other popular languages, Swift's switch statements do not require an explicit `break` statement.
+
+The example below will print `three`
+
+```swift
+var number = 3
+
+switch number {
+case 0:
+    print("zero")
+case 1:
+    print("one")
+case 2:
+    print("two")
+case 3:
+    print("three")
+default:
+    print("Unrecognized number")
+}
+```
+
 ### Functions
 
-TODO
+In Swift, functions use the `func` keyword.
+There's a whole array of modifiers that can be applied to functions but I'm not going to focus on those now.
 
-### Classes
+Funtions can be used to perform simple tasks:
 
-TODO
+```swift
+func sayHello() {
+  print("Hello")
+}
+sayHello()  // prints "Hello"
+```
 
-## Demo
+Functions in can take arguments.
+Swift uses named arguments so the argument's name is used in the function call:
 
-TODO
+```swift
+func sayHello(name: String) {
+  print("Hello, " + name)
+}
+sayHello(name: "Chuck Norris")  // prints "Hello, Chuck Norris"
+```
+
+The argument's name in the invocation does not have to be name of the argument in the function definition.
+
+```swift
+func sayHello(to name: String) {
+  print("Hello, " + name)
+}
+sayHello(to: "Bruce Lee")  // prints "Hello, Bruce Lee"
+```
+
+Functions can even opt out of using a name for an argument by using an `_` as the name.
+
+```swift
+func sayHello(_ name: String) {
+  print("Hello, " + name)
+}
+sayHello("Ip Man")  // prints "Hello, Ip Man"
+```
+
+Finally, functions can declare a return value using `->` and the return value's type:
+
+```swift
+func helloString(for name: String) -> String {
+  return "Hello, " + name
+}
+let string = helloString(for: "Kung Fury")
+print(string)  // prints "Hello, Kung Fury"
+```
+
+### Enums
+
+Swift's Enums allow you to describe a group of related values and work with them in a safe way.
+Often times enums are used to describe a "type" of a thing.
+
+Here is an example for types of primates:
+
+```swift
+enum PrimateType {
+  case Monkey
+  case Gorilla
+  case Human
+}
+```
+
+Enums are especially powerful when combined with switch statements.
+The example below prints `*gorilla noise*`:
+
+```swift
+var primateType = PrimateType.Gorilla
+
+switch primateType {
+case .Monkey:
+    print("ooh ooh ahh ahh")
+case .Gorilla:
+    print("*gorilla noise*")
+case .Human:
+    print("Lorem Ipsum")
+}
+```
+
+### Classes & Structs
+
+Swift provides classes and structs which can be used to structure data and organize functionality.
+Structs and classes are very similar.
+For example, both allow you to:
+
+- Define properties to store data
+- Define methods to add functionality
+- Define initializers
+
+The difference is that classes provide some additional features including:
+
+- Inheritance
+- Type Casting
+- Deinitialization
+
+Structs are defined as follows:
+
+```swift
+struct Primate {
+  let name: String
+  let type: PrimateType
+
+  func makeANoise() {
+    switch type {
+    case .Monkey:
+      print("ooh ooh ahh ahh")
+    case .Gorilla:
+      print("*gorilla noise*")
+    case .Human:
+      print("Lorem Ipsum")
+    }
+  }
+}
+
+let harambe = Primate(name: "Harambe", type: .Gorilla)
+print(harambe.name)   // prints Harambe
+harambe.makeANoise()  // prints *gorilla noise*
+```
+
+Classes are defined as follows:
+
+```swift
+class Primate {
+  let name: String
+  let type: PrimateType
+
+  init(name: String, type: PrimateType) {
+    self.name = name
+    self.type = type
+  }
+
+  func makeANoise() {
+    switch type {
+    case .Monkey:
+      print("ooh ooh ahh ahh")
+    case .Gorilla:
+      print("*gorilla noise*")
+    case .Human:
+      print("Lorem Ipsum")
+    }
+  }
+}
+
+let batman = Primate(name: "Christian Bale", type: .Human)
+print(batman.name)   // prints Christian Bale
+batman.makeANoise()  // prints Lorem Ipsum
+```
+
+Note that the methods defined on a class or a struct use the `self` keyword to refer to the given instance of that class or struct.
+For example, to add a function that prints a Primate's first name:
+
+```swift
+struct Primate {
+  // ...
+
+  func firstName() -> String? {
+    return self.name.components(separatedBy: " ").first
+  }
+}
+
+let batman = Primate(name: "Christian Bale", type: .Human)
+
+if let name = batman.firstName() {
+  print(name)  // prints Christian
+} else {
+  print("Batman doesn't have a name")
+}
+```
