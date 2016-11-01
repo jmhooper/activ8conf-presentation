@@ -66,7 +66,7 @@ Let's review some of Swift's syntax and language features.
 This review of language is by no means comprehensive.
 Check out [Apple's documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html) for a more thorough overview of the language.
 
-### Contants & Variables
+### Constants & Variables
 
 In Swift, variables are declared with the `var` keywoard.
 A variable's value can be changed to a different value of the same type after it has been set.
@@ -352,15 +352,82 @@ numbers.updateValue(4, forKey: "three")  // numbers["three"] now equals 4
 numbers.removeAll()                      // numbers is now empty
 ```
 
-### Conditionals
+### Control Flow
 
-TODO
+Swift has a wide array of built in statements to handle control flow.
+I'm only able to cover a few here.
+For a more comprehensive overview check out [Apple's documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html).
 
-### Loops
+#### If/Else
 
-TODO
+If statements work the same way they do in other programming language.
+Parentheses are optional.
 
-### Functionas
+```swift
+var number = 5
+
+if number == 5 {
+  // do something
+}
+
+if number > 5 {
+  // do something
+} else {
+  // do something else
+}
+
+if number > 5 {
+  // do something
+} else if number == 5 {
+  // do something else
+} else {
+  // do something... elser...?
+}
+```
+
+If statements can also be used with `let` to unwrap optionals.
+
+This example if effectively saying: "If `optionalNumber` is not nil, assign it to the variable `optionalNumber` within the if statement's scope and print it out.
+If `optionalNumber` is nil, print out `"optionalNumber is nil"`."
+
+```swift
+var optionalNumber: Int? = 5
+
+if let optionalNumber = optionalNumber {
+  // optionalNumber is now available as an unwrapped optional
+   print(optionalNumber)
+} else {
+  // optionalNumber is nil
+  print("optionalNumber is nil")
+}
+```
+
+#### Guard
+
+Guard statements work similarly to if statements.
+They provide an else block which is executed if the conditional is false.
+
+This is helpful for early exit from a function.
+
+```swift
+func fibonacci(at number: Int) -> Int {
+  guard number > 1 else {
+    return number
+  }
+
+  return fibonacci(at: number - 1) + fibonacci(at: number - 2)
+}
+
+fibonacci(at: 7)  // return 13
+```
+
+#### While Loops
+
+#### For Loops
+
+#### Switch Statements
+
+### Functions
 
 TODO
 
