@@ -11,6 +11,8 @@ This talk provides a "swift" introduction to Apple's new programming language fo
 We'll review some of Swift's primary language features before diving into Xcode to demo the language by building a bare bones iOS app.
 You'll walk away with some basic knowledge about the Swift ecosystem and insight into where to look to learn more.
 
+You can download the slides for this talk [here](/slides.pdf).
+
 ## What is Swift?
 
 Swift can be described many ways.
